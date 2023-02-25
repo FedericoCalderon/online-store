@@ -1,0 +1,6 @@
+.custom-float {
+    width: fit-content;
+    position: fixed;
+    right: 5px;
+    bottom: 5px;
+}

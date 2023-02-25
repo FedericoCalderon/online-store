@@ -1,0 +1,13 @@
+
+create-product {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.sep {
+    margin-top: 10px;   
+    margin-bottom: 15px;   
+    border-bottom: 1px solid rgb(166, 166, 166);
+}

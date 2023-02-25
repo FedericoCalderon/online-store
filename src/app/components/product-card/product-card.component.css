@@ -1,0 +1,33 @@
+.title {
+    /* display: flex; */
+    text-align: center;
+    font-size: large;
+    width: 100%;
+    padding: 0px 15px;
+    margin-bottom: 5px;
+    margin-top: 5px;
+}
+
+.price {
+    margin: 10px;
+}
+
+.price-num {
+    font-weight: bold;
+}
+
+.description-title {
+    margin: 0 0 5px 10px;
+    font-weight: bold;
+}
+
+.description {
+    margin: 0 5px 5px 10px;
+    padding: 0;
+    max-height: 5rem;
+    overflow-y: auto;
+}
+
+.max-height {
+    max-height: 238px;
+}

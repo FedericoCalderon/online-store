@@ -1,0 +1,10 @@
+
+    <div class="container-cards">
+        <product-card *ngFor="let product_ of products"
+            [title]="product_.title"
+            [price]="product_.price"
+            [description]="product_.description"
+            [imageUrl]="product_.image.url"
+            [imageName]="product_.image.name"
+        ></product-card>
+    </div>
