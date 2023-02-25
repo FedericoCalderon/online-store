@@ -7,4 +7,8 @@
             [imageUrl]="product_.image.url"
             [imageName]="product_.image.name"
         ></product-card>
+
+        <div *ngIf="products.length == 0">
+            <h2>No hay productos</h2>
+        </div>
     </div>
