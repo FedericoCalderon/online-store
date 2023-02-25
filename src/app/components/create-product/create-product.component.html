@@ -23,7 +23,10 @@
         <span class="custom-spn"> {{propUploadImage}}: </span>
         <input [class.is-invalid]="productForm.get('image').touched && productForm.get('image').invalid"
             [class.is-valid]="productForm.get('image').touched && productForm.get('image').value != ''"
-            class="form-control w-75" type="file" [formControlName]="productForm.get('image')" accept=".jpg,.png" (change)="onSelectImage($event)">
+            class="form-control w-75" type="file" [formControlName]="productForm.get('image')"
+            accept=".jpg,.png" (change)="onSelectImage($event)" style="display: none" #selectFile
+        >
+        <button (click)="selectFile.click()" class="form-control w-75 on-hover-btn">Seleccionar Archivo</button>
     </div>
     <div class="custom-info-container">
         <button type="button" class="btn btn-outline-primary" (click)="addProduct()"
