@@ -5,3 +5,8 @@
 .custom-container {
     overflow-x: auto;
 }
+
+
+.description-sizing {
+    max-width: 550px;
+}

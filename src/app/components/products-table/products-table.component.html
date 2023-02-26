@@ -26,7 +26,7 @@
         <tr *ngFor="let product of getProducts(); index as i" class="row justify-content-center">
         <th class="col-1 text-center"> {{i+1}} </th>
         <td class="col-2 text-center custom-container"> {{product.title}} </td>
-        <td class="col-5 text-center custom-container"> {{product.description}} </td>
+        <td class="col-5 text-center custom-container description-sizing"> {{product.description}} </td>
         <td class="col-1">
             <img [src]="product.image.url" alt="Imagen {{product.image.name}} no cargada" width='60' height="60">
         </td>
