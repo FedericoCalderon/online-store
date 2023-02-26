@@ -11,6 +11,6 @@ export class BtnGotopComponent {
   constructor (private globalDataService: GlobalDataService) {}
 
   goTop() {
-    this.globalDataService.goTop();
+    document.documentElement.scrollTop = 0;
   }
 }

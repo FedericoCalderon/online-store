@@ -93,8 +93,4 @@ export class GlobalDataService {
     public resetProduct():void {
         this.product = null;
     }
-    
-    public goTop() {
-        document.documentElement.scrollTop = 0;
-    }
 }
