@@ -1,9 +1,10 @@
 import { Injectable } from "@angular/core";
 import { GlobalConstants } from "../constants/global-constants";
 import { _Product } from "../models/Product.model";
-import { Observable, Subject } from 'rxjs';
+import { Subject } from 'rxjs';
 import { ToastTypeMessage } from "../constants/toast-type.enum";
 import { ToastService } from "../services/toast.service";
+import { ValidationsService } from "../services/validations.service";
 
 
 @Injectable({providedIn: 'root'})
@@ -13,7 +14,7 @@ export class GlobalDataService {
     public product: _Product | null;
     public refresh$: Subject<void>;
 
-    constructor (private toastService: ToastService) {
+    constructor (private toastService: ToastService, private validationsService: ValidationsService) {
         const exampleProducts = [
             new _Product("Zapatillas urbanas", 15800, "Zapatillas blancas urbanas con detalle de corazón, femeninas ",'1.jpg', GlobalConstants.images[0]),
             new _Product("Conjunto de invierno masculino", 21000, "Conjunto campera + pantalón de pólar, color rojo con negro ",'2.jpg', GlobalConstants.images[1]),
@@ -46,6 +47,8 @@ export class GlobalDataService {
         imageUrl: string,
         id: number | null,
         ): void {
+        this.validationsService.validatePrice(price);
+        this.validationsService.validateTitle(title);
         if (id) {
             const productIndex: number = this.findIndexOfProduct(id);
             this.products[productIndex].title = title;
