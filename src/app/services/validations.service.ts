@@ -17,9 +17,20 @@ export class ValidationsService {
         }
     }
     validateTitle(title: string) {
-        if (title.length == 0 || title.length > 50 || title.trim() == '') {
-            this.toastService.showAlert("Título incorrecto", 2000, ToastTypeMessage.danger);
-            throw new Error("Incorrect title");
+        if (title.trim().length == 0) {
+            this.toastService.showAlert("Por favor agrega un título", 2000, ToastTypeMessage.danger);
+            throw new Error("No title");
+        }
+        if (title.trim().length > 21 ) {
+            this.toastService.showAlert("Título demasiado largo", 2000, ToastTypeMessage.danger);
+            throw new Error("Title too long");
+        }
+    }
+
+    validateDescription(description: string) {
+        if (description.trim().length == 0) {
+            this.toastService.showAlert("Por favor agrega una descripción", 2000, ToastTypeMessage.danger);
+            throw new Error("No Description");
         }
     }
 }

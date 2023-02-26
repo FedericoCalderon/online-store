@@ -47,8 +47,9 @@ export class GlobalDataService {
         imageUrl: string,
         id: number | null,
         ): void {
-        this.validationsService.validatePrice(price);
         this.validationsService.validateTitle(title);
+        this.validationsService.validatePrice(price);
+        this.validationsService.validateDescription(description);
         if (id) {
             const productIndex: number = this.findIndexOfProduct(id);
             this.products[productIndex].title = title;
