@@ -2,6 +2,8 @@ import { Injectable } from "@angular/core";
 import { GlobalConstants } from "../constants/global-constants";
 import { _Product } from "../models/Product.model";
 import { Observable, Subject } from 'rxjs';
+import { ToastTypeMessage } from "../constants/toast-type.enum";
+import { ToastService } from "../services/toast.service";
 
 
 @Injectable({providedIn: 'root'})
@@ -11,7 +13,7 @@ export class GlobalDataService {
     public product: _Product | null;
     public refresh$: Subject<void>;
 
-    constructor () {
+    constructor (private toastService: ToastService) {
         const exampleProducts = [
             new _Product("Zapatillas urbanas", 15800, "Zapatillas blancas urbanas con detalle de corazón, femeninas ",'1.jpg', GlobalConstants.images[0]),
             new _Product("Conjunto de invierno masculino", 21000, "Conjunto campera + pantalón de pólar, color rojo con negro ",'2.jpg', GlobalConstants.images[1]),
@@ -51,14 +53,17 @@ export class GlobalDataService {
             this.products[productIndex].description = description;
             this.products[productIndex].image.url = imageUrl;
             this.products[productIndex].image.name = imageName;
+            this.toastService.showAlert("Producto Editado con exito!", 1500, ToastTypeMessage.informative)
             this.resetProduct();
             return;
         }
         this.products.unshift(new _Product(title, price, description, imageName, imageUrl));
+        this.toastService.showAlert("Producto Agregado con exito!", 1500, ToastTypeMessage.success)
     }
 
     public removeProduct(id: number): void {
         this.products = this.products.filter((product ) => product.id != id);
+        this.toastService.showAlert("Producto Eliminado con exito!", 1500, ToastTypeMessage.danger)
     }
 
     public editProduct(id: number) {

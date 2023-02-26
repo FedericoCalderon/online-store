@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { GlobalDataService } from 'src/app/data/global-data.service';
 import { GlobalConstants } from 'src/app/constants/global-constants';
+import { ToastService } from 'src/app/services/toast.service';
 
 @Component({
   selector: 'create-product',
@@ -23,7 +24,8 @@ export class CreateProductComponent implements OnInit {
   
 
   constructor (
-    private globalDataService: GlobalDataService
+    private globalDataService: GlobalDataService,
+    private toastService: ToastService
     ) {
       this.subscription = new Subscription();
       this.imageUrl = "";

@@ -9,5 +9,13 @@ create-product {
 .sep {
     margin-top: 10px;   
     margin-bottom: 15px;   
-    border-bottom: 1px solid rgb(166, 166, 166);
+    border-bottom: 1px solid rgb(210 210 210);
+}
+
+
+@media screen and (max-width: 1010px) {
+    .responsive-image-position {
+        display: flex;
+        flex-direction: column;
+    }
 }

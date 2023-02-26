@@ -14,6 +14,7 @@ import { HomeComponent } from './components/home/home.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { ProductsTableComponent } from './components/products-table/products-table.component';
 import { BtnGotopComponent } from './components/btn-gotop/btn-gotop.component';
+import { ToastComponent } from './components/toast/toast.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent} , 
@@ -30,7 +31,7 @@ const routes: Routes = [
     AdminComponent,
     ProductsCards,
     HomeComponent,
-    NotFoundComponent, ProductsTableComponent, BtnGotopComponent
+    NotFoundComponent, ProductsTableComponent, BtnGotopComponent, ToastComponent
   ],
   imports: [
     BrowserModule,
