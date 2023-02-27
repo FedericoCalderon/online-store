@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { GlobalConstants } from "../constants/global-constants";
 import { _Product } from "../models/Product.model";
-import { Subject } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { ToastTypeMessage } from "../constants/toast-type.enum";
 import { ToastService } from "./toast.service";
 import { ValidationsService } from "./validations.service";
@@ -11,8 +11,10 @@ import { ValidationsService } from "./validations.service";
 
 export class ProductsService {
     private products: Array<_Product> = [];
-    public product: _Product | null;
-    public refresh$: Subject<void>;
+    // public product: _Product | null;
+    // public refresh$: Subject<_Product>;
+    private refreshSource = new BehaviorSubject(new _Product("",0,"","","",-1));
+    public refresh$: Observable<_Product>;
 
     constructor (private toastService: ToastService, private validationsService: ValidationsService) {
         const exampleProducts = [
@@ -26,8 +28,8 @@ export class ProductsService {
             new _Product("Hojotas femeninas", 3950, "Hojotas femeninas color rosado con amarillo con plataforma",'7.jpg', GlobalConstants.images[7]),
         ];
         
-        this.refresh$ = new Subject<void>();
-        this.product = null;
+        this.refresh$ = this.refreshSource.asObservable();
+        // this.product = null;
         
         this.products = exampleProducts;
         // this.products = [];
@@ -75,8 +77,8 @@ export class ProductsService {
         if (!product.title || !product.price || !product.description || !product.id) {
             throw new Error(`Prodcut dont has properies \n${product}`);
         }
-        this.product = new _Product(product.title, product.price, product.description, product.image.name, product.image.url, product.id);
-        this.refresh$.next();
+        // this.product = new _Product(product.title, product.price, product.description, product.image.name, product.image.url, product.id);
+        this.refreshSource.next(product);
     }
 
     private findIndexOfProduct(id: number):number {
@@ -91,7 +93,7 @@ export class ProductsService {
     }
     
     public resetProduct():void {
-        this.product = null;
+        this.refreshSource.next(new _Product("",-1,"","","",-1));
     }
 
     public goTop():void {
