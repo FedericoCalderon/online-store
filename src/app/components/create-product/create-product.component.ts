@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { ProductsService } from 'src/app/services/products.service';
 import { GlobalConstants } from 'src/app/constants/global-constants';
 import { ToastService } from 'src/app/services/toast.service';
+import { _Product } from 'src/app/models/Product.model';
 
 @Component({
   selector: 'create-product',
@@ -11,12 +12,12 @@ import { ToastService } from 'src/app/services/toast.service';
   styleUrls: ['./create-product.component.css']
 })
 export class CreateProductComponent implements OnInit {
+  public id: number;
   public imageUrl: string | null | undefined;
   public imageName: string | undefined;
   public btnAddEdit: string;
   public btnCancel: string;
   public productForm: any;
-  public subscription: Subscription;
   public propTitle: string;
   public prorpPrice: string;
   public propDescription: string;
@@ -25,9 +26,8 @@ export class CreateProductComponent implements OnInit {
 
   constructor (
     private productService: ProductsService,
-    private toastService: ToastService
     ) {
-      this.subscription = new Subscription();
+      this.id = -1;
       this.imageUrl = "";
       this.imageName = "";
       this.btnAddEdit = GlobalConstants.props.btnAdd;
@@ -47,15 +47,16 @@ export class CreateProductComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.subscription = this.productService.refresh$.subscribe(() => {
-      this.imageUrl = this.productService.product?.image.url;
-      this.imageName = this.productService.product?.image.name;
-      this.btnAddEdit = GlobalConstants.props.btnEdit;
+    this.productService.refresh$.subscribe((product: _Product) => {
+      this.id = product?.id;
+      this.imageUrl = product?.image.url;
+      this.imageName = product?.image.name;
+      this.btnAddEdit = this.id == -1 ? GlobalConstants.props.btnAdd : GlobalConstants.props.btnEdit;
       this.productForm.setValue({
-        title: this.productService.product?.title,
-        price: this.productService.product?.price,
-        description: this.productService.product?.description,
-        image: this.productService.product?.image.url,
+        title: product?.title,
+        price:  this.id == -1 ? "": product.price,
+        description: product?.description,
+        image: product?.image.url,
       });
     })
   }
@@ -82,7 +83,7 @@ export class CreateProductComponent implements OnInit {
       this.productForm.get('description').value,
       this.imageName || "",
       this.imageUrl || "",
-      this.productService.product?.id || null,
+      this.id == -1 ? null : this.id,
     );
     this.reset();
   }
