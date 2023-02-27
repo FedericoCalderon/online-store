@@ -9,4 +9,6 @@
 
 .description-sizing {
     max-width: 550px;
+    max-height: 5rem;
+    overflow: auto;
 }

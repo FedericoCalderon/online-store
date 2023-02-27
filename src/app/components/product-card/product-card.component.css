@@ -24,7 +24,7 @@
 .description {
     margin: 0 5px 5px 10px;
     padding: 0;
-    max-height: 5rem;
+    height: 5rem;
     overflow-y: auto;
 }
 
