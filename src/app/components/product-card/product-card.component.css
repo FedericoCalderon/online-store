@@ -13,9 +13,8 @@
 }
 
 .price {
-    margin-left: 10px;
+    margin: 0px 10px;
     width: fit-content;
-    padding: 5px;
     border-radius: 10px;
 }
 
