@@ -1,7 +1,7 @@
-<div class="card m-2" style="width: 15rem;">
+<div class="card m-2 custom-box-shadow" style="width: 15rem;">
     <img [src]="imageUrl" alt="Imagen {{imageName}} no cargada" class="card-img-top max-height">
     <span class="text-truncate title"> {{title}} </span>
-    <span class="price">{{propPrice}}: <span class="price-num">${{price | number}}</span></span>
-    <span class="description-title">{{propDescription}}:</span>
+    <span class="price"><span class="price-num">${{price | number}}</span></span>
     <p class="description"> {{description}} </p>
+    <!-- <span class="description-title">{{propDescription}}:</span> -->
 </div>
