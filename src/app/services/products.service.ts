@@ -19,13 +19,19 @@ export class ProductsService {
     constructor (private toastService: ToastService, private validationsService: ValidationsService) {
         const exampleProducts = [
             new _Product("Zapatillas urbanas", 15800, "Zapatillas blancas urbanas con detalle de corazón, femeninas ",'1.jpg', GlobalConstants.images[0]),
-            new _Product("Conjunto de invierno masculino", 21000, "Conjunto campera + pantalón de pólar, color rojo con negro ",'2.jpg', GlobalConstants.images[1]),
-            new _Product("Camiseta femenina", 5000, "Camiseta con tiras, femenina para verano",'3.jpg', GlobalConstants.images[2]),
+            new _Product("Conjunto de invierno masculino", 22300, "Conjunto campera + pantalón de pólar, color rojo con negro ",'2.jpg', GlobalConstants.images[1]),
+            new _Product("Camiseta femenina", 7500, "Camiseta con tiras, femenina para verano",'3.jpg', GlobalConstants.images[2]),
             new _Product("Camiseta térmica", 8900, "Camiseta térmica de mangas largas estilo invernal, 100% aglgodón, color gris claro",'4.jpg', GlobalConstants.images[3]),
             new _Product("Zapatillas deportivas", 4500, "Zapatillas blancas con negro deportivas",'5.jpg', GlobalConstants.images[4]),
             new _Product("Conjunto de invierno femenino", 18400, "Conjunto invernal de color negro con blanco, 100% algodón",'6.jpg', GlobalConstants.images[5]),
             new _Product("Zapatillas deportivas femeninas", 8700, "Zapatillas  deportivas femeninas color bordó con blancas, con abrojos",'7.jpg', GlobalConstants.images[6]),
-            new _Product("Hojotas femeninas", 3950, "Hojotas femeninas color rosado con amarillo con plataforma",'7.jpg', GlobalConstants.images[7]),
+            new _Product("Hojotas femeninas", 3950, "Hojotas femeninas color rosado con amarillo con plataforma",'8.jpg', GlobalConstants.images[7]),
+            new _Product("Vestido amarillo", 12350, "Hojotas femeninas color rosado con amarillo con plataforma",'9.jpg', GlobalConstants.images[8]),
+            new _Product("Vestido texturado", 16400, "Hojotas femeninas color rosado con amarillo con plataforma",'10.jpg', GlobalConstants.images[9]),
+            new _Product("Vesitdo blanco floreado", 14100, "Hojotas femeninas color rosado con amarillo con plataforma",'11.jpg', GlobalConstants.images[10]),
+            new _Product("Vesitdo negro detallado", 17800, "Hojotas femeninas color rosado con amarillo con plataforma",'12.jpg', GlobalConstants.images[11]),
+            new _Product("Vesitdo blanco detallado", 11200, "Hojotas femeninas color rosado con amarillo con plataforma",'13.jpg', GlobalConstants.images[12]),
+            new _Product("Vesitdo blanco liso", 15900, "Hojotas femeninas color rosado con amarillo con plataforma",'14.jpg', GlobalConstants.images[13]),
         ];
         
         this.refresh$ = this.refreshSource.asObservable();
