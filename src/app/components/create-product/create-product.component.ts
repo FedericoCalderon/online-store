@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
-import { GlobalDataService } from 'src/app/data/global-data.service';
+import { ProductsService } from 'src/app/services/products.service';
 import { GlobalConstants } from 'src/app/constants/global-constants';
 import { ToastService } from 'src/app/services/toast.service';
 
@@ -24,7 +24,7 @@ export class CreateProductComponent implements OnInit {
   
 
   constructor (
-    private globalDataService: GlobalDataService,
+    private productService: ProductsService,
     private toastService: ToastService
     ) {
       this.subscription = new Subscription();
@@ -47,15 +47,15 @@ export class CreateProductComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.subscription = this.globalDataService.refresh$.subscribe(() => {
-      this.imageUrl = this.globalDataService.product?.image.url;
-      this.imageName = this.globalDataService.product?.image.name;
+    this.subscription = this.productService.refresh$.subscribe(() => {
+      this.imageUrl = this.productService.product?.image.url;
+      this.imageName = this.productService.product?.image.name;
       this.btnAddEdit = GlobalConstants.props.btnEdit;
       this.productForm.setValue({
-        title: this.globalDataService.product?.title,
-        price: this.globalDataService.product?.price,
-        description: this.globalDataService.product?.description,
-        image: this.globalDataService.product?.image.url,
+        title: this.productService.product?.title,
+        price: this.productService.product?.price,
+        description: this.productService.product?.description,
+        image: this.productService.product?.image.url,
       });
     })
   }
@@ -76,13 +76,13 @@ export class CreateProductComponent implements OnInit {
   }
 
   public addProduct() {
-    this.globalDataService.insertProduct(
+    this.productService.insertProduct(
       this.productForm.get('title').value,
       this.productForm.get('price').value,
       this.productForm.get('description').value,
       this.imageName || "",
       this.imageUrl || "",
-      this.globalDataService.product?.id || null,
+      this.productService.product?.id || null,
     );
     this.reset();
   }
@@ -99,6 +99,7 @@ export class CreateProductComponent implements OnInit {
     this.imageName = "";
     this.imageUrl = "";
     this.btnAddEdit = GlobalConstants.props.btnAdd;
+    this.productService.resetProduct();
   }
 
 }

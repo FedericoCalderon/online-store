@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { GlobalDataService } from 'src/app/data/global-data.service';
+import { ProductsService } from 'src/app/services/products.service';
 import { _Product } from 'src/app/models/Product.model';
 
 @Component({
@@ -10,12 +10,12 @@ import { _Product } from 'src/app/models/Product.model';
 export class ProductsCards implements OnInit {
   products: Array<_Product>;
 
-  constructor(private globalDataService: GlobalDataService) {
+  constructor(private productService: ProductsService) {
     this.products = [];
   }
 
   ngOnInit() {
-    this.products = this.globalDataService.getProducts();
+    this.products = this.productService.getProducts();
   }
   
 }

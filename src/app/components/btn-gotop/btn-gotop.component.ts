@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { GlobalDataService } from 'src/app/data/global-data.service';
+import { ProductsService } from 'src/app/services/products.service';
 
 @Component({
   selector: 'btn-gotop',
@@ -8,9 +8,9 @@ import { GlobalDataService } from 'src/app/data/global-data.service';
 })
 export class BtnGotopComponent {
   
-  constructor (private globalDataService: GlobalDataService) {}
+  constructor (private plobalDataService: ProductsService) {}
 
   goTop() {
-    document.documentElement.scrollTop = 0;
+    this.plobalDataService.goTop()
   }
 }

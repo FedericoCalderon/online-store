@@ -3,13 +3,13 @@ import { GlobalConstants } from "../constants/global-constants";
 import { _Product } from "../models/Product.model";
 import { Subject } from 'rxjs';
 import { ToastTypeMessage } from "../constants/toast-type.enum";
-import { ToastService } from "../services/toast.service";
-import { ValidationsService } from "../services/validations.service";
+import { ToastService } from "./toast.service";
+import { ValidationsService } from "./validations.service";
 
 
 @Injectable({providedIn: 'root'})
 
-export class GlobalDataService {
+export class ProductsService {
     private products: Array<_Product> = [];
     public product: _Product | null;
     public refresh$: Subject<void>;
@@ -92,5 +92,9 @@ export class GlobalDataService {
     
     public resetProduct():void {
         this.product = null;
+    }
+
+    public goTop():void {
+        document.documentElement.scrollTop = 0;
     }
 }

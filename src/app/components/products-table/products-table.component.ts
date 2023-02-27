@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { GlobalConstants } from 'src/app/constants/global-constants';
-import { GlobalDataService } from 'src/app/data/global-data.service';
+import { ProductsService } from 'src/app/services/products.service';
 import { _Product } from 'src/app/models/Product.model';
 
 @Component({
@@ -18,7 +18,7 @@ export class ProductsTableComponent {
   public propPrice: string;
   public propSettings: string;
 
-  constructor(private globalDataService: GlobalDataService) {
+  constructor(private productsService: ProductsService) {
     this.propId = GlobalConstants.props.id;
     this.propTitle = GlobalConstants.props.title;
     this.propDescription = GlobalConstants.props.description;
@@ -28,16 +28,16 @@ export class ProductsTableComponent {
   }
 
   public getProducts(): Array<_Product> {
-    return this.globalDataService.getProducts();
+    return this.productsService.getProducts();
   }
 
   public onRemove(id: number): void {
-    this.globalDataService.removeProduct(id);
+    this.productsService.removeProduct(id);
   }
   
   public onEdit(id: number) {
-    this.globalDataService.editProduct(id);
-    this.globalDataService.goTop();
+    this.productsService.editProduct(id);
+    this.productsService.goTop();
   }
 
 }
