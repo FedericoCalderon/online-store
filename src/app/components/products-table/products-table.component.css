@@ -5,7 +5,6 @@
 }
 
 .custom-container {
-    overflow-x: auto;
     padding: 10px;
 }
 
@@ -18,4 +17,11 @@
 
 .custom-font-size-img {
     font-size: 0.8rem;
+}
+
+
+@media screen and (max-width: 1400px) {
+    .custom-container {
+        overflow-x: auto;
+    }
 }
