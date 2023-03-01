@@ -67,7 +67,7 @@ export class CreateProductComponent implements OnInit {
 
     fileReader.onload = _event => {
       if (typeof fileReader.result == 'string') {
-        this.imageUrl = fileReader.result;        
+        this.imageUrl = fileReader.result;
         return;
       }
       this.imageUrl = null;

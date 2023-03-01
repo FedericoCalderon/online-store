@@ -26,12 +26,12 @@ export class ProductsService {
             new _Product("Conjunto de invierno femenino", 18400, "Conjunto invernal de color negro con blanco, 100% algodón",'6.jpg', GlobalConstants.images[5]),
             new _Product("Zapatillas deportivas femeninas", 8700, "Zapatillas  deportivas femeninas color bordó con blancas, con abrojos",'7.jpg', GlobalConstants.images[6]),
             new _Product("Hojotas femeninas", 3950, "Hojotas femeninas color rosado con amarillo con plataforma",'8.jpg', GlobalConstants.images[7]),
-            new _Product("Vestido amarillo", 12350, "Hojotas femeninas color rosado con amarillo con plataforma",'9.jpg', GlobalConstants.images[8]),
-            new _Product("Vestido texturado", 16400, "Hojotas femeninas color rosado con amarillo con plataforma",'10.jpg', GlobalConstants.images[9]),
-            new _Product("Vesitdo blanco floreado", 14100, "Hojotas femeninas color rosado con amarillo con plataforma",'11.jpg', GlobalConstants.images[10]),
-            new _Product("Vesitdo negro detallado", 17800, "Hojotas femeninas color rosado con amarillo con plataforma",'12.jpg', GlobalConstants.images[11]),
-            new _Product("Vesitdo blanco detallado", 11200, "Hojotas femeninas color rosado con amarillo con plataforma",'13.jpg', GlobalConstants.images[12]),
-            new _Product("Vesitdo blanco liso", 15900, "Hojotas femeninas color rosado con amarillo con plataforma",'14.jpg', GlobalConstants.images[13]),
+            new _Product("Vestido amarillo", 12350, "Vestido de algodón color amarillo, casual de mangas cortas, sin mangas",'9.jpg', GlobalConstants.images[8]),
+            new _Product("Vestido texturado", 16400, "Solero estilo crochet de color beige con tiras regulables, sin mangas",'10.jpg', GlobalConstants.images[9]),
+            new _Product("Vesitdo blanco floreado", 14100, "Vestido de fibrana blanco con estampado floreado, sin mangas",'11.jpg', GlobalConstants.images[10]),
+            new _Product("Vesitdo negro detallado", 17800, "Vestido morley de tipo musculosa, sin mangas",'12.jpg', GlobalConstants.images[11]),
+            new _Product("Vesitdo blanco detallado", 11200, "Vestido de lurex color azul claro con escote y tiras, sin mangas",'13.jpg', GlobalConstants.images[12]),
+            new _Product("Vesitdo blanco liso", 15900, "Vestido corto, veraniego de algodón, de color blanco, sin mangas",'14.jpg', GlobalConstants.images[13]),
         ];
         
         this.refresh$ = this.refreshSource.asObservable();
