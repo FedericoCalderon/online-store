@@ -1,5 +1,5 @@
 
-    <div class="container-cards">
+    <div class="container-cards" *ngIf="products.length != 0">
         <product-card *ngFor="let product_ of products"
             [title]="product_.title"
             [price]="product_.price"
@@ -8,7 +8,5 @@
             [imageName]="product_.image.name"
         ></product-card>
 
-        <div *ngIf="products.length == 0">
-            <h2>No hay productos</h2>
-        </div>
     </div>
+    <loading *ngIf="products.length == 0"></loading>

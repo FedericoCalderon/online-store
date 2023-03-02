@@ -11,7 +11,6 @@ import { AdminComponent } from './components/admin/admin.component';
 
 import { Routes, RouterModule } from '@angular/router';
 import { ProductsCards } from './components/products-cards/products-cards.component';
-import { HomeComponent } from './components/home/home.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { ProductsTableComponent } from './components/products-table/products-table.component';
 import { BtnGotopComponent } from './components/btn-gotop/btn-gotop.component';
@@ -19,9 +18,10 @@ import { ToastComponent } from './components/toast/toast.component';
 import { ProductsService } from './services/products.service';
 import { ToastService } from './services/toast.service';
 import { ValidationsService } from './services/validations.service';
+import { LoadingComponent } from './components/loading/loading.component';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent} , 
+  { path: '', component: ProductsCards} , 
   { path: 'admin', component: AdminComponent },
   { path: '**', component: NotFoundComponent }
 ];
@@ -34,8 +34,7 @@ const routes: Routes = [
     NavbarComponent,
     AdminComponent,
     ProductsCards,
-    HomeComponent,
-    NotFoundComponent, ProductsTableComponent, BtnGotopComponent, ToastComponent
+    NotFoundComponent, ProductsTableComponent, BtnGotopComponent, ToastComponent, LoadingComponent
   ],
   imports: [
     BrowserModule,
