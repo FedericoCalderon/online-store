@@ -10,7 +10,6 @@ import { _Product } from 'src/app/models/Product.model';
 })
 
 export class ProductsTableComponent {
-  public products: Array<_Product> = [];
   public propId: string;
   public propTitle: string;
   public propDescription: string;
@@ -27,8 +26,8 @@ export class ProductsTableComponent {
     this.propSettings = GlobalConstants.props.settings;
   }
   
-  ngOnInit() {
-    this.products = this.productsService.getProducts();
+  getProducts(): Array<_Product> {
+    return this.productsService.getProducts();
   }
   public onRemove(id: number): void {
     this.productsService.removeProduct(id);

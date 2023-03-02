@@ -1,4 +1,4 @@
-<div class="container custom-container" *ngIf="products.length != 0">
+<div class="container custom-container" *ngIf="getProducts().length != 0">
   <table class="table table-ligth table-striped custom-table">
       <thead>
         <tr class="row justify-content-center">
@@ -23,7 +23,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let product of products; index as i" class="row justify-content-center">
+        <tr *ngFor="let product of getProducts(); index as i" class="row justify-content-center">
         <th class="col-1 text-center"> {{i+1}} </th>
         <td class="col-2 text-center custom-container"> {{product.title}} </td>
         <td class="col-5 text-center custom-container description-sizing"> {{product.description}} </td>
@@ -45,4 +45,4 @@
 </div>
 
 
-<loading *ngIf="products.length == 0"></loading>
+<loading *ngIf="getProducts().length == 0"></loading>
