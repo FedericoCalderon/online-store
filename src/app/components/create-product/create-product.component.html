@@ -22,8 +22,9 @@
         <div class="custom-info-container">
             <span class="custom-spn"> {{propUploadImage}}: </span>
             <input
-                class="form-control w-75" type="file" [formControlName]="productForm.get('image')"
-                accept=".jpg,.png" (change)="onSelectImage($event)" style="display: none" #selectFile
+                #selectFile
+                class="form-control w-75" type="file" accept=".jpg,.png"
+                (change)="onSelectImage($event)" style="display: none" 
             >
             <button 
                 (click)="selectFile.click()" class="form-control w-75 on-hover-btn"

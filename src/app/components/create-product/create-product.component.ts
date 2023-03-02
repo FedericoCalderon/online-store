@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Subscription } from 'rxjs';
 import { ProductsService } from 'src/app/services/products.service';
 import { GlobalConstants } from 'src/app/constants/global-constants';
-import { ToastService } from 'src/app/services/toast.service';
 import { _Product } from 'src/app/models/Product.model';
 
 @Component({

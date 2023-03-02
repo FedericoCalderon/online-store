@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { ProductCard } from './components/product-card/product-card.component';
@@ -15,6 +16,9 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { ProductsTableComponent } from './components/products-table/products-table.component';
 import { BtnGotopComponent } from './components/btn-gotop/btn-gotop.component';
 import { ToastComponent } from './components/toast/toast.component';
+import { ProductsService } from './services/products.service';
+import { ToastService } from './services/toast.service';
+import { ValidationsService } from './services/validations.service';
 
 const routes: Routes = [
   { path: '', component: HomeComponent} , 
@@ -35,10 +39,11 @@ const routes: Routes = [
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     ReactiveFormsModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [],
+  providers: [ProductsService, ToastService, ValidationsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

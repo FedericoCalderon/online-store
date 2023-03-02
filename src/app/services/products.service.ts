@@ -1,10 +1,12 @@
 import { Injectable } from "@angular/core";
-import { GlobalConstants } from "../constants/global-constants";
 import { _Product } from "../models/Product.model";
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { ToastTypeMessage } from "../constants/toast-type.enum";
 import { ToastService } from "./toast.service";
 import { ValidationsService } from "./validations.service";
+import { HttpClient } from "@angular/common/http";
+import { environment } from "src/environments/environment.development";
+import { IProduct } from "../interfaces/IProducts";
 
 
 @Injectable({providedIn: 'root'})
@@ -16,32 +18,37 @@ export class ProductsService {
     private refreshSource = new BehaviorSubject(new _Product("",0,"","","",-1));
     public refresh$: Observable<_Product>;
 
-    constructor (private toastService: ToastService, private validationsService: ValidationsService) {
-        const exampleProducts = [
-            new _Product("Zapatillas urbanas", 15800, "Zapatillas blancas urbanas con detalle de corazón, femeninas ",'1.jpg', GlobalConstants.images[0]),
-            new _Product("Conjunto de invierno masculino", 22300, "Conjunto campera + pantalón de pólar, color rojo con negro ",'2.jpg', GlobalConstants.images[1]),
-            new _Product("Camiseta femenina", 7500, "Camiseta con tiras, femenina para verano",'3.jpg', GlobalConstants.images[2]),
-            new _Product("Camiseta térmica", 8900, "Camiseta térmica de mangas largas estilo invernal, 100% aglgodón, color gris claro",'4.jpg', GlobalConstants.images[3]),
-            new _Product("Zapatillas deportivas", 4500, "Zapatillas blancas con negro deportivas",'5.jpg', GlobalConstants.images[4]),
-            new _Product("Conjunto de invierno femenino", 18400, "Conjunto invernal de color negro con blanco, 100% algodón",'6.jpg', GlobalConstants.images[5]),
-            new _Product("Zapatillas deportivas femeninas", 8700, "Zapatillas  deportivas femeninas color bordó con blancas, con abrojos",'7.jpg', GlobalConstants.images[6]),
-            new _Product("Hojotas femeninas", 3950, "Hojotas femeninas color rosado con amarillo con plataforma",'8.jpg', GlobalConstants.images[7]),
-            new _Product("Vestido amarillo", 12350, "Vestido de algodón color amarillo, casual de mangas cortas, sin mangas",'9.jpg', GlobalConstants.images[8]),
-            new _Product("Vestido texturado", 16400, "Solero estilo crochet de color beige con tiras regulables, sin mangas",'10.jpg', GlobalConstants.images[9]),
-            new _Product("Vesitdo blanco floreado", 14100, "Vestido de fibrana blanco con estampado floreado, sin mangas",'11.jpg', GlobalConstants.images[10]),
-            new _Product("Vesitdo negro detallado", 17800, "Vestido morley de tipo musculosa, sin mangas",'12.jpg', GlobalConstants.images[11]),
-            new _Product("Vesitdo blanco detallado", 11200, "Vestido de lurex color azul claro con escote y tiras, sin mangas",'13.jpg', GlobalConstants.images[12]),
-            new _Product("Vesitdo blanco liso", 15900, "Vestido corto, veraniego de algodón, de color blanco, sin mangas",'14.jpg', GlobalConstants.images[13]),
-        ];
+    constructor (private toastService: ToastService, private validationsService: ValidationsService, private http: HttpClient) {
+        // const exampleProducts = [
+        //     new _Product("Zapatillas urbanas", 15800, "Zapatillas blancas urbanas con detalle de corazón, femeninas ",'1.jpg', GlobalConstants.images[0]),
+        //     new _Product("Conjunto de invierno masculino", 22300, "Conjunto campera + pantalón de pólar, color rojo con negro ",'2.jpg', GlobalConstants.images[1]),
+        //     new _Product("Camiseta femenina", 7500, "Camiseta con tiras, femenina para verano",'3.jpg', GlobalConstants.images[2]),
+        //     new _Product("Camiseta térmica", 8900, "Camiseta térmica de mangas largas estilo invernal, 100% aglgodón, color gris claro",'4.jpg', GlobalConstants.images[3]),
+        //     new _Product("Zapatillas deportivas", 4500, "Zapatillas blancas con negro deportivas",'5.jpg', GlobalConstants.images[4]),
+        //     new _Product("Conjunto de invierno femenino", 18400, "Conjunto invernal de color negro con blanco, 100% algodón",'6.jpg', GlobalConstants.images[5]),
+        //     new _Product("Zapatillas deportivas femeninas", 8700, "Zapatillas  deportivas femeninas color bordó con blancas, con abrojos",'7.jpg', GlobalConstants.images[6]),
+        //     new _Product("Hojotas femeninas", 3950, "Hojotas femeninas color rosado con amarillo con plataforma",'8.jpg', GlobalConstants.images[7]),
+        //     new _Product("Vestido amarillo", 12350, "Vestido de algodón color amarillo, casual de mangas cortas, sin mangas",'9.jpg', GlobalConstants.images[8]),
+        //     new _Product("Vestido texturado", 16400, "Solero estilo crochet de color beige con tiras regulables, sin mangas",'10.jpg', GlobalConstants.images[9]),
+        //     new _Product("Vesitdo blanco floreado", 14100, "Vestido de fibrana blanco con estampado floreado, sin mangas",'11.jpg', GlobalConstants.images[10]),
+        //     new _Product("Vesitdo negro detallado", 17800, "Vestido morley de tipo musculosa, sin mangas",'12.jpg', GlobalConstants.images[11]),
+        //     new _Product("Vesitdo blanco detallado", 11200, "Vestido de lurex color azul claro con escote y tiras, sin mangas",'13.jpg', GlobalConstants.images[12]),
+        //     new _Product("Vesitdo blanco liso", 15900, "Vestido corto, veraniego de algodón, de color blanco, sin mangas",'14.jpg', GlobalConstants.images[13]),
+        // ];
         
         this.refresh$ = this.refreshSource.asObservable();
-        // this.product = null;
-        
-        this.products = exampleProducts;
-        // this.products = [];
+        this.loadProdcuts();
     }
 
     
+    public loadProdcuts(): void {
+        this.http.get(environment.dataUrl)
+        .subscribe((productsResponse: any ) => {
+            productsResponse.map((product: IProduct) => {
+                this.products.push(new _Product(product.title, product.price, product.description, product.imageName, product.imageUrl))
+            })
+        })
+    }
 
     public getProducts(): Array<_Product> {
         return this.products;
@@ -60,6 +67,10 @@ export class ProductsService {
         this.validationsService.validateDescription(description);
         if (id) {
             const productIndex: number = this.findIndexOfProduct(id);
+            if (productIndex == -1) {
+                this.products.unshift(new _Product(title, price, description, imageName, imageUrl));
+                this.toastService.showAlert("Producto Agregado con exito!", 1500, ToastTypeMessage.success)
+            }
             this.products[productIndex].title = title;
             this.products[productIndex].price = price;
             this.products[productIndex].description = description;
