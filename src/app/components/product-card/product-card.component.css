@@ -37,3 +37,17 @@
 .max-height {
     max-height: 238px;
 }
+
+.custom-container-card {
+    transition: 0.3s
+}
+.custom-container-card:hover {
+    /* transform: scale(1.1); */
+    transform: translate(0, -10px);
+    /* transform: rotateX(200px); */
+    
+    z-index: 2;
+    cursor: pointer;
+    box-shadow: 0px 5px 20px rgb(93, 93, 93);
+    background: rgb(50, 50, 50, 0.1);
+}
